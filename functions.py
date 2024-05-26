@@ -53,3 +53,14 @@ def get_recommended_course(contract_id: Any, is_active: bool) -> dict | None:
     except (AttributeError, LookupError, ValueError):
         data = search_max_similarity(crm_code)
         return data
+
+
+def price_month(price):
+    """
+    Get price in month
+    :param price: price for the whole course 1944,0; 2131,0; 842,0;
+    :return: price in month 239, 259, 99
+    """
+    price = price.replace(",", ".")
+    price = round(float(price) / 8) - 10
+    return f"{str(price)[:-1:]}9"
